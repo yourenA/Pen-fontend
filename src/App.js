@@ -17,7 +17,7 @@ import homeContainer from './containers/Home/Index'
 // import TurnTop from './components/Turn-top'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as getBaseInfo from './actions/getInfo';
+import * as getBaseInfo from './actions/record';
 require('es6-promise').polyfill();
 const history = createHistory()
 // var parser = require('ua-parser-js');
@@ -25,8 +25,8 @@ const history = createHistory()
  normalize.css
  */
 
-const ImageAndText = asyncComponent(() =>
-import(/* webpackChunkName: "ImageAndText" */ "./containers/ImageAndText/Index")
+const Record = asyncComponent(() =>
+import(/* webpackChunkName: "Record" */ "./containers/Record/Index")
 )
 
 class App extends React.Component {
@@ -49,7 +49,7 @@ class App extends React.Component {
                     return (
                         <div key={location.pathname} className="react">
                             <Route location={location}  exact path="/" component={homeContainer}/>
-                            <Route location={location}   path="/image-and-text" component={ImageAndText}/>
+                            <Route location={location}   path="/record" component={Record}/>
                         </div>
                     )
                 }}/>
