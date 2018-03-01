@@ -28,6 +28,9 @@ const history = createHistory()
 const Record = asyncComponent(() =>
 import(/* webpackChunkName: "Record" */ "./containers/Record/Index")
 )
+const Photo = asyncComponent(() =>
+import(/* webpackChunkName: "Record" */ "./containers/Photo/Index")
+)
 
 class App extends React.Component {
     constructor(props) {
@@ -50,6 +53,7 @@ class App extends React.Component {
                         <div key={location.pathname} className="react">
                             <Route location={location}  exact path="/" component={homeContainer}/>
                             <Route location={location}   path="/record" component={Record}/>
+                            <Route location={location}   path="/photo" component={Photo}/>
                         </div>
                     )
                 }}/>

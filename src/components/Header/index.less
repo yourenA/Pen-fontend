@@ -1,0 +1,74 @@
+@charset "UTF-8";
+@import "./../../var";
+@bg-overlay: rgba(0,235,235,0.7);
+@primary-color2: #fff;
+@primary-font: "Amatic SC", cursive;
+@secondary-color: #FFF0A5;
+@secondary-font: "Abril Fatface", cursive;
+@image-path: "../../images/record.jpg";
+@position: center center;
+@line-bg:#e5e5e5;
+@circle-color:#d35136;
+.header {
+  padding: 28px;
+  text-align: center;
+  animation: bgFadeIn 1s ease-in both;
+  position: relative;
+  .header-content {
+    margin: 12rem auto;
+    max-width: 750px;
+    padding: 0 24px;
+    @media (max-width: @small-media) {
+      margin: 4rem auto;
+    }
+  }
+  .before {
+    background: //linear-gradient(
+            //        @bg-overlay,
+            //        @bg-overlay
+            //),
+            url(@image-path); //渐变 图片
+    background-color: #CCCCCC;
+    background-attachment: fixed; //背景图片固定不动。
+    background-position: @position;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: -1;
+  }
+  @keyframes bgFadeIn {
+    0% {
+      background-color: rgba(255, 255, 255, 1);
+    }
+    100% {
+      background-color: rgba(255, 255, 255, 0);
+    }
+  }
+  h1 {
+    border-bottom: 2px solid @primary-color2;
+    border-top: 2px solid @primary-color2;
+    color: @primary-color2;
+    font-family: @primary-font;
+    font-size: 8.75rem;
+    margin: 0;
+    @media (max-width: @small-media) {
+      font-size: 3rem;
+    }
+  }
+
+  h3 {
+    color: @secondary-color;
+    font-family: @secondary-font;
+    font-size: 3.75rem;
+    font-style: italic;
+    font-weight: 100;
+    margin: 0;
+    @media (max-width: @small-media) {
+      font-size: 1.3rem;
+    }
+  }
+}

@@ -8,6 +8,7 @@ import Pswp  from './../../components/PSWP/Index'
 import moment from 'moment'
 import debounce from 'lodash/debounce'
 import configJson from 'configJson' ;
+import Header from './../../components/Header/Index'
 class ImageAndText extends PureComponent {
     constructor(props) {
         super(props);
@@ -124,12 +125,7 @@ class ImageAndText extends PureComponent {
         })
         return (
             <div className="record">
-                <div className="header">
-                    <div className="header-content">
-                        <h1>-RECORDS-</h1>
-                        <h3>You'll never regret it.</h3>
-                    </div>
-                </div>
+                <Header title="RECORDS" desc="You'll never regret it."/>
                 <div className="item-box">
                     {
                         record.loading ?

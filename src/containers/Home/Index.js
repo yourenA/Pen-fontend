@@ -124,7 +124,10 @@ class Home extends PureComponent {
                             </div>
                             <div
                                 className={`main-item  animated  ${this.state.item2Loaded ? 'bounceInDown  show' : ''}`}>
-                                <div className="main-item-inner">
+                                <div className="main-item-inner" onClick={()=> {
+                                    this.props.history.push('/photo')
+
+                                }}>
                                     <div className="item-bg">
                                         <div className="line line1"></div>
                                         <div className="line line2"></div>
@@ -135,8 +138,8 @@ class Home extends PureComponent {
                                         <img src={icon2} alt=""/>
                                     </div>
                                     <div className="item-desc">
-                                        <h3>设计价值观</h3>
-                                        <p>design values</p>
+                                        <h3>世界</h3>
+                                        <p>Photo</p>
                                     </div>
                                 </div>
                             </div>
