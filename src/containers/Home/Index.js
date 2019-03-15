@@ -8,7 +8,7 @@ class Home extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            rotateAngel: -5
+            rotateAngel: 0
         }
     }
     componentWillUnmount(){
@@ -88,44 +88,19 @@ class Home extends PureComponent {
             <div className="main">
                 <div className="main-top">
                     <div className="main-top-wrap">
-                        <p className="main-title">Write some thing for the Sky</p>
-                        <p className="main-title">Do some thing for the Life</p>
+                        <p className="main-title">Write Some Thing For The Sky</p>
+                        <p className="main-title">Do Some Thing For The Life</p>
                     </div>
                     <div className="main-top-rotate"
                          style={{transform: `translate(-50%) rotate(${this.state.rotateAngel}deg)`}}></div>
                 </div>
                 <div className="main-item-box">
                     <div className="main-item-content">
-                        <div className={`main-item-title ` }>
-                            <p>Some Projects</p>
-                        </div>
-                        <div className="clearfix"></div>
                         <div className="main-item-wrap">
                             <div
                                 className={`main-item  animated  ${this.state.item1Loaded ? 'bounceInDown show' : ''}`}>
                                 <div className="main-item-inner " onClick={()=> {
-                                    this.props.history.push('/record')
-
-                                }}>
-                                    <div className="item-bg">
-                                        <div className="line line1"></div>
-                                        <div className="line line2"></div>
-                                        <div className="line line3"></div>
-                                        <div className="line line4"></div>
-                                    </div>
-                                    <div className="item-image">
-                                        <img src={icon1} alt=""/>
-                                    </div>
-                                    <div className="item-desc">
-                                        <h3>记录</h3>
-                                        <p>Record</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div
-                                className={`main-item  animated  ${this.state.item2Loaded ? 'bounceInDown  show' : ''}`}>
-                                <div className="main-item-inner" onClick={()=> {
-                                    this.props.history.push('/photo')
+                                    this.props.history.push({ pathname: "/post",search:'?category=1&page=1', state: {reload:true} })
 
                                 }}>
                                     <div className="item-bg">
@@ -138,32 +113,17 @@ class Home extends PureComponent {
                                         <img src={icon2} alt=""/>
                                     </div>
                                     <div className="item-desc">
-                                        <h3>世界</h3>
-                                        <p>Photo</p>
+                                        <h3>前端</h3>
+                                        <p>Record</p>
                                     </div>
                                 </div>
                             </div>
                             <div
-                                className={`main-item  animated  ${this.state.item3Loaded ? 'bounceInDown  show' : ''}`}>
-                                <div className="main-item-inner">
-                                    <div className="item-bg">
-                                        <div className="line line1"></div>
-                                        <div className="line line2"></div>
-                                        <div className="line line3"></div>
-                                        <div className="line line4"></div>
-                                    </div>
-                                    <div className="item-image">
-                                        <img src={icon4} alt=""/>
-                                    </div>
-                                    <div className="item-desc">
-                                        <h3>设计价值观</h3>
-                                        <p>design values</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div
-                                className={`main-item  animated  ${this.state.item4Loaded ? 'bounceInDown show' : ''}`}>
-                                <div className="main-item-inner">
+                                className={`main-item  animated  ${this.state.item2Loaded ? 'bounceInDown  show' : ''}`}>
+                                <div className="main-item-inner" onClick={()=> {
+                                    this.props.history.push({ pathname: "/post",search:'?category=2&page=1', state: {reload:true} })
+
+                                }}>
                                     <div className="item-bg">
                                         <div className="line line1"></div>
                                         <div className="line line2"></div>
@@ -174,7 +134,49 @@ class Home extends PureComponent {
                                         <img src={icon3} alt=""/>
                                     </div>
                                     <div className="item-desc">
-                                        <h3>设计价值观</h3>
+                                        <h3>NodeJS</h3>
+                                        <p>Photo</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                className={`main-item  animated  ${this.state.item3Loaded ? 'bounceInDown  show' : ''}`}>
+                                <div className="main-item-inner" onClick={()=> {
+                                    this.props.history.push({ pathname: "/post",search:'?category=3&page=1', state: {reload:true} })
+
+                                }}>
+                                    <div className="item-bg">
+                                        <div className="line line1"></div>
+                                        <div className="line line2"></div>
+                                        <div className="line line3"></div>
+                                        <div className="line line4"></div>
+                                    </div>
+                                    <div className="item-image">
+                                        <img src={icon4} alt=""/>
+                                    </div>
+                                    <div className="item-desc">
+                                        <h3>数据库</h3>
+                                        <p>design values</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                className={`main-item  animated  ${this.state.item4Loaded ? 'bounceInDown show' : ''}`}>
+                                <div className="main-item-inner" onClick={()=> {
+                                    this.props.history.push({ pathname: "/post",search:'?category=4&page=1', state: {reload:true} })
+
+                                }}>
+                                    <div className="item-bg">
+                                        <div className="line line1"></div>
+                                        <div className="line line2"></div>
+                                        <div className="line line3"></div>
+                                        <div className="line line4"></div>
+                                    </div>
+                                    <div className="item-image">
+                                        <img src={icon1} alt=""/>
+                                    </div>
+                                    <div className="item-desc">
+                                        <h3>摄影</h3>
                                         <p>design values</p>
                                     </div>
                                 </div>

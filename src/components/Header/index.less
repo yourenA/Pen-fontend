@@ -15,9 +15,10 @@
   animation: bgFadeIn 1s ease-in both;
   position: relative;
   .header-content {
-    margin: 12rem auto;
+    margin: 17rem auto;
     max-width: 750px;
     padding: 0 24px;
+    z-index: 99;
     @media (max-width: @small-media) {
       margin: 4rem auto;
     }
@@ -38,7 +39,10 @@
     left: 0;
     right: 0;
     top: 0;
-    z-index: -1;
+    z-index: 0;
+    @media (max-width: @small-media) {
+      background-size: auto;
+    }
   }
   @keyframes bgFadeIn {
     0% {
@@ -53,10 +57,12 @@
     border-top: 2px solid @primary-color2;
     color: @primary-color2;
     font-family: @primary-font;
-    font-size: 8.75rem;
-    margin: 0;
+    font-size: 4.75rem;
+    margin: 20px 0;
+    padding: 20px 0;
+    z-index: 1;
     @media (max-width: @small-media) {
-      font-size: 3rem;
+      font-size: 2rem;
     }
   }
 
@@ -67,6 +73,10 @@
     font-style: italic;
     font-weight: 100;
     margin: 0;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     @media (max-width: @small-media) {
       font-size: 1.3rem;
     }

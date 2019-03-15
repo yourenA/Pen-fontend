@@ -3,6 +3,7 @@
  */
 import React from 'react'
 import './index.less'
+import Top from './../../images/top.png'
 class TurnTop extends React.Component {
     constructor(props) {
         super(props);
@@ -16,9 +17,16 @@ class TurnTop extends React.Component {
 
     componentDidMount() {
         window.addEventListener('scroll', this.showScrollTop)
+        window.addEventListener('mousewheel', this.stopScroll)
+        window.addEventListener('DOMMouseScroll', this.stopScroll)
     }
     componentWillUnmount() {
         window.removeEventListener('scroll', this.showScrollTop)
+    }
+    stopScroll=()=>{
+        if (this.scrollTopTimer) {
+            clearInterval(this.scrollTopTimer);
+        }
     }
     showScrollTop = ()=> {
         const backTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -36,7 +44,7 @@ class TurnTop extends React.Component {
         this.scrollTopTimer = setInterval(function () {
             const backTop = document.documentElement.scrollTop || document.body.scrollTop;
             // console.log('backTop',backTop)
-            var speedTop = backTop / 8;
+            var speedTop = backTop / 6;
             document.documentElement.scrollTop = (backTop - speedTop);
             body.scrollTop = (backTop - speedTop);
             if (backTop === 0) {
@@ -48,6 +56,7 @@ class TurnTop extends React.Component {
     render() {
         return (
             <div className="turn-top" onClick={this.turnTop} style={{display:this.state.show?"block":"none"}}>
+                <img src={Top} alt=""/><span>TOP</span>
             </div>
         )
     }

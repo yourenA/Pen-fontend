@@ -4,9 +4,9 @@ const Header = ({ title, desc, background, ...restProps }) => {
     return (
 
             <div className="header">
-                <div className="before" style={background?{background:`url(${background})`}:null}></div>
+                <div className="before" style={background?{background:`url(${background})`, backgroundAttachment: 'fixed',backgroundPosition:'center -50px'}:null}></div>
                 <div className="header-content">
-                    <h1>-{title}-</h1>
+                    <h1>{title}</h1>
                     <h3>{desc}</h3>
                 </div>
             </div>

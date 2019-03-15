@@ -1,0 +1,272 @@
+@charset "UTF-8";
+@import "./../../var";
+
+body{
+}
+.photo-section{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 5px;
+  &:after {
+    content: '';
+    flex-grow: 999999999; /*最后一行的剩余空间就基本全被这一个元素的 grow 占掉了*/
+  }
+  .item{
+    position: relative;
+    margin: 5px;
+    height: 150px;
+    flex-grow: 1;/*grow：放大。flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）*/
+    &:hover{
+      .delete-icon{
+        display: block;
+      }
+    }
+    img {
+      cursor: zoom-in;
+      height: 150px;
+      width: 100%;
+      /*
+      object-fit
+      contain: 中文释义“包含”。保持原有尺寸比例。保证替换内容尺寸一定可以在容器里面放得下。因此，此参数可能会在容器内留下空白。
+cover: 中文释义“覆盖”。保持原有尺寸比例。保证替换内容尺寸一定大于容器尺寸，宽度和高度至少有一个和容器一致。因此，此参数可能会让替换内容（如图片）部分区域不可见。
+      **/
+      object-fit: cover;/* objectposition和object-fit只针对替换元素（form，img，video）有作用*/
+      vertical-align: bottom;
+      @media (max-width: @small-media){
+
+      }
+    }
+  }
+}
+
+.content-box{
+  background: #ffffff;
+  display: flex;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 15px;
+  @media (max-width: @small-media){
+    flex-direction: column;
+    margin-bottom: 0;
+    padding: 15px 0;
+  }
+  .category{
+    background: #ffffff;
+    width: 150px;
+    @media (max-width: @small-media){
+      width: 100%;
+    }
+    .seat{
+      width: 100%;
+    }
+    .category-content{
+      //width: 100%;
+      background: #ffffff;
+
+      @media (max-width: @small-media){
+        width: 100%;
+        padding:0 15px 15px 15px;
+        display: flex;
+        z-index: 999;
+        text-align: center;
+      }
+    }
+
+    .category-item{
+      width: 150px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space:nowrap;
+      box-sizing: border-box;
+      padding: 8px;
+      font-size: 16px;
+      color: #5d5d5d;
+      border-radius:3px ;
+      cursor: pointer;
+      transition: all 0.3s;
+      @media (max-width: @small-media){
+        flex: 1;
+        font-size: 14px;
+      }
+      &:hover:not(.active){
+        background: rgba(255, 154, 62, 0.12);
+      }
+      &.active{
+        background: @page-color;
+        color: #ffffff;
+        font-weight: 700;
+      }
+    }
+  }
+  .post{
+    flex: 1;
+    padding: 0 15px;
+    .post-item{
+      padding: 25px 5px;
+      background: url(../../images/line.png) center bottom repeat-x;
+      .post-title{
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.2;
+        margin-bottom: 8px;
+        font-family: sans-serif;
+        display: inline-block;
+        color: @footer-color;
+        &:hover{
+          color:lighten(@footer-color,10%);
+        }
+      }
+      .post-tags{
+      }
+      .post-content{
+        display: flex;
+        .post-desc{
+          font-family: Arial, Verdana, sans-serif;
+          margin-bottom:8px;
+          line-height: 1.8;
+          color: #777777;
+          font-size: 15px;
+          flex: 1;
+          .code-desc-content{
+            overflow: hidden;
+          }
+
+        }
+        .post-img{
+          width: 100px;
+          height: auto;
+          max-height: 76px;
+          overflow: hidden;
+          margin:0 0 0 20px;
+          border-radius: 5px;
+          @media (max-width: @small-media){
+            width: 80px;
+            margin:0 0 0 10px;
+          }
+          img{
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+          }
+        }
+      }
+
+
+      .post-time{
+        color: #757575;
+        font-size: 14px;
+      }
+      &:not(:last-child){
+
+      }
+    }
+  }
+  .author{
+
+    width: 226px;
+    @media (max-width: @small-media){
+      margin-top: 15px;
+      width: auto;
+    }
+    .author-content{
+      padding: 5px 15px 12px;
+      background:#fff url("../../images/leaves.png")  repeat;
+
+      a{
+        text-decoration: underline;
+        word-break: break-all;
+      }
+    }
+    h4{
+      display: flex;
+      align-items: center;
+      line-height: 2;
+      span{
+        color: #a9a7a7;
+        font-size: 12px;
+        font-weight: 400;
+        margin-left: 10px;
+      }
+    }
+    img{
+      width: 28px;
+      height: 28px;
+      margin-right: 10px;
+    }
+    p{
+      &:nth-of-type(1){
+        margin-top: 10px;
+      }
+      text-indent: 2em;
+      margin-bottom: 15px;
+      line-height: 1.7;
+      color: #656565;
+      font-size: 15px;
+    }
+  }
+
+  .search-box{
+    position: relative;
+    .search-input{
+      box-sizing: border-box;
+      margin: 0;
+      list-style: none;
+      position: relative;
+      display: inline-block;
+      padding: 7px 11px;
+      width: 100%;
+      font-size: 14px;
+      line-height: 1.5;
+      color: rgba(0,0,0,.65);
+      background-color: #fff;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      transition: all .3s;
+      outline: none;
+      &:focus{
+        border: 1px solid @page-color;
+      }
+    }
+    img{
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+    }
+  }
+
+  .pagination{
+    padding: 20px 30% 0 30%;
+    text-align: center;
+    line-height: 30px;
+    display: flex;
+    .img{
+      width: 30px;
+      height: 30px;
+      background: url("./../../images/pagination.png");
+      cursor: pointer;
+    }
+    .left{
+      background-position: 0 0;
+      &:hover{
+        background-position: 0 30px;
+      }
+    }
+    .right{
+      background-position: 30px 0;
+      &:hover{
+        background-position: 30px 30px;
+      }
+    }
+    .pagination-info{
+      flex: 1;
+      color: #666;
+      font-weight: bold;
+      font-size: 14px;
+    }
+  }
+
+}
