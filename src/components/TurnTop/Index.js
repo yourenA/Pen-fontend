@@ -4,6 +4,7 @@
 import React from 'react'
 import './index.less'
 import Top from './../../images/top.png'
+import Home from './../../images/home2.png'
 class TurnTop extends React.Component {
     constructor(props) {
         super(props);
@@ -55,9 +56,18 @@ class TurnTop extends React.Component {
 
     render() {
         return (
-            <div className="turn-top" onClick={this.turnTop} style={{display:this.state.show?"block":"none"}}>
-                <img src={Top} alt=""/><span>TOP</span>
+            <div  className="turn-top"  style={{display:this.state.show?"block":"none"}}>
+                {
+                    this.props.goHome&&
+                    <div  onClick={this.props.goHome} >
+                        <img src={Home} alt=""/><span>HOME</span>
+                    </div>
+                }
+                <div  onClick={this.turnTop} >
+                    <img src={Top} alt=""/><span>TOP</span>
+                </div>
             </div>
+
         )
     }
 }

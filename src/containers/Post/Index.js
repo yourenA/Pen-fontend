@@ -12,7 +12,7 @@ import Ellipsis from './../../components/Ellipsis/Index.js';
 import Tag from './../../components/Tag/Index'
 import moment from 'moment'
 import Header from './../../components/Header/Index'
-import throttle from 'lodash/throttle'
+import emoji from 'emoji-dictionary'
 import clear from './../../images/clear.png'
 import home from './../../images/home.png'
 class ImageAndText extends PureComponent {
@@ -190,8 +190,14 @@ class ImageAndText extends PureComponent {
         }
         const renderPost = data.map((item, index)=> {
             // let reg = new RegExp(""+this.state.query+"","g");
-            item.markdown= item.markdown.replace(/<[^>]+>/g,"");
-            item.markdown = item.markdown.replace(/[\*]|[\#]|[>]/g, '')
+            let markdownCopy=item.markdown
+            let img = markdownCopy.match(/!\[image\]\((\S*)\)/);
+
+
+            let md= item.markdown.replace(/<[^>]+>/g,"");
+            md = md.replace(/[\*]|[\#]|[>]|[=]/g, '')
+            md = md.replace(/!\[image\]\((\S*)\)/g, '')
+            md = md.replace(/\((\S*)\)/g, '')
             const regKey = ["\\", "+"]
             let reg = null
             if (regKey.indexOf(this.state.query) >= 0) {
@@ -200,17 +206,16 @@ class ImageAndText extends PureComponent {
                 reg = new RegExp("(" + this.state.query + ")", "gi");
 
             }
-            let img = item.markdown.match(/!\[image\]\((\S*)\)/);
-            let markdown = this.state.query ? item.markdown.replace(reg, `<span style="color:red">${this.state.query}</span>`) : item.markdown;
-            let searchIndex = markdown.indexOf(this.state.query)
+            md = this.state.query ? md.replace(reg, `<span style="color:red">${this.state.query}</span>`) : md;
+            let searchIndex = md.indexOf(this.state.query)
             if (searchIndex > 100) {
-                markdown = markdown.substr(searchIndex - 100)
+                md = md.substr(searchIndex - 100)
             }
             return (
                 <div key={index} className="post-item">
                     <div className="post-title" onClick={()=> {
                         this.props.history.push(`/post-detail/${item.id}`)
-                    }}>[{item.code_category && item.code_category.name}] {item.title}
+                    }}>[{item.code_category && item.code_category.name}] {item.title.replace(/:\w+:/gi, name => emoji.getUnicode(name))}
                     </div>
                     <div className="post-tags">{renderTags(item.tags)}</div>
                     <div className="post-content">
@@ -218,7 +223,7 @@ class ImageAndText extends PureComponent {
                             <Ellipsis className="code-desc-content" lines={3}>
                                 <p
                                     dangerouslySetInnerHTML={{
-                                        __html: markdown
+                                        __html: md
                                     }}></p>
                             </Ellipsis>
                         </div>

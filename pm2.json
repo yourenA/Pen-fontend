@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "ly-website",
+      "name": "Pen-fontend",
       "script": "./server.js",
       "env": {
         "NODE_ENV": "production"

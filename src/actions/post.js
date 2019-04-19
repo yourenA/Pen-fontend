@@ -12,8 +12,10 @@ export const GET_CATEGORY_FAIL = 'GET_CATEGORY_FAIL';
 export const GET_ONE_POST_SUCCESS = 'GET_ONE_POST_SUCCESS';
 export const GET_ONE_POST_FAIL = 'GET_ONE_POST_FAIL';
 export const SAVE_SCROLL = 'SAVE_SCROLL';
-
-
+export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
+export const ADD_COMMENT_FAIL = 'ADD_COMMENT_FAIL';
+export const GET_COMMENTS_SUCCESS = 'GET_COMMENTS_SUCCESS';
+export const GET_COMMENTS_FAIL = 'GET_COMMENTS_FAIL';
 export function getCategory(params) {
     return dispatch => {
         axios({
@@ -80,6 +82,75 @@ export function getPost({cb,params}) {
                 } else {
                     dispatch({
                         type: GET_POST_FAIL,
+                    });
+                }
+            })
+            .catch(function (error) {
+                console.log(error)
+            });
+    }
+}
+export function sendComment(params,cb) {
+    console.log('params',params)
+    return dispatch => {
+        axios({
+            url: `${configJson.prefix}/api/comment`,
+            method: 'post',
+            data:params
+        })
+            .then(function (response) {
+                console.log(response);
+                if (response.status === 200) {
+                    dispatch({
+                        type: ADD_COMMENT_SUCCESS,
+                        payload: {status:1,msg:'添加评论成功'},
+                    });
+                    if(cb)cb()
+                } else {
+                    dispatch({
+                        type: ADD_COMMENT_FAIL,
+                        payload: {status:-1,msg:response.data.message},
+                    });
+                }
+            })
+            .catch(function (error) {
+                if (error.response) {
+                    // The request was made and the server responded with a status code
+                    // that falls out of the range of 2xx
+                    console.log(error.response.data);
+                    dispatch({
+                        type: ADD_COMMENT_FAIL,
+                        payload: {status:-1,msg:error.response.data.message},
+                    });
+                } else if (error.request) {
+                    console.log(error.request);
+                } else {
+                    console.log('Error', error.message);
+                }
+            });
+    }
+}
+
+
+export function getComents(id) {
+    return dispatch => {
+        axios({
+            url: `${configJson.prefix}/api/comments`,
+            method: 'get',
+            params:{
+                id:id
+            }
+        })
+            .then(function (response) {
+                console.log(response);
+                if (response.status === 200) {
+                    dispatch({
+                        type: GET_COMMENTS_SUCCESS,
+                        payload: response.data.rows,
+                    });
+                } else {
+                    dispatch({
+                        type: GET_COMMENTS_FAIL,
                     });
                 }
             })

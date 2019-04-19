@@ -2,7 +2,7 @@
  * Created by Administrator on 2017/3/8.
  */
 import {GET_POST_FAIL,GET_POST_SUCCESS,RESET_POST,GET_CATEGORY_SUCCESS,RESET_DETAIL,GET_ONE_POST_SUCCESS,GET_ONE_POST_FAIL
-,SAVE_SCROLL} from '../actions/post';
+,SAVE_SCROLL,ADD_COMMENT_SUCCESS,ADD_COMMENT_FAIL,GET_COMMENTS_SUCCESS,GET_COMMENTS_FAIL} from '../actions/post';
 const initState = {
     loaded: false,
     data: [],
@@ -12,6 +12,10 @@ const initState = {
     category:[],
     detail:{},
     scrollTop:0,
+    status:0,
+    msg:'',
+    comments:[],
+
 };
 export default function photo(state = initState, action) {
     switch (action.type) {
@@ -48,8 +52,20 @@ export default function photo(state = initState, action) {
                 detail:action.payload,
 
             });
+        case GET_COMMENTS_SUCCESS:
+            return Object.assign({}, state, {
+                comments:action.payload,
+
+            });
         case GET_POST_FAIL:
             return Object.assign({}, state, {loaded: false});
+
+        case ADD_COMMENT_SUCCESS:
+        case ADD_COMMENT_FAIL:
+            return Object.assign({}, state, {
+                status:action.payload.status,
+                msg:action.payload.msg,
+            });
         default:
             return state;
     }
