@@ -36,7 +36,7 @@
         font-size: 36px;
       }
       @media (max-width: @small-media) {
-        font-size: 24px;
+        font-size: 20px;
       }
     }
     .main-top-rotate{
@@ -60,6 +60,9 @@
     padding-bottom: 50px;
     padding-top: 50px;
     background: #FF9840 url("./../../images/item-bg.png") no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     @media (max-width: @middle-media) {
       height:auto;
     }
@@ -67,12 +70,14 @@
       height: auto;
       min-height: 65vh;
       padding-bottom:0;
-      padding-top: 10px;
+      padding-top: 0;
+
     }
     .main-item-content{
       margin: 0 auto;
       width: 100%;
       max-width: @max-width;
+
     }
 
     .main-item-title{
