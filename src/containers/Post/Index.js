@@ -195,7 +195,7 @@ class ImageAndText extends PureComponent {
 
 
             let md= item.markdown.replace(/<[^>]+>/g,"");
-            md = md.replace(/[\*]|[\#]|[>]|[=]/g, '')
+            md = md.replace(/[\*]|[\#]|[>]|[=]|[\`\`\`]/g, '')
             md = md.replace(/!\[image\]\((\S*)\)/g, '')
             md = md.replace(/\((\S*)\)/g, '')
             const regKey = ["\\", "+"]

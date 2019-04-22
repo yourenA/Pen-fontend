@@ -5,7 +5,8 @@
 @primary-font: "Amatic SC", cursive;
 @secondary-color: #FFF0A5;
 @secondary-font: "Abril Fatface", cursive;
-@image-path: "../../images/record.jpg";
+@image-path: "../../images/photo.jpg";
+@mobile-image-path: "../../images/photo-mobile.jpg";
 @position: center center;
 @line-bg:#e5e5e5;
 @circle-color:#d35136;
@@ -19,6 +20,9 @@
     max-width: 750px;
     padding: 0 24px;
     z-index: 99;
+    @media (max-width: @middle-media) {
+      margin: 10rem auto;
+    }
     @media (max-width: @small-media) {
       margin: 4rem auto;
     }
@@ -31,9 +35,8 @@
             url(@image-path); //渐变 图片
     background-color: #CCCCCC;
     background-attachment: fixed; //背景图片固定不动。
-    background-position: @position;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-position:center -50px;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -41,8 +44,16 @@
     top: 0;
     z-index: 0;
     @media (max-width: @small-media) {
-      background-size: auto;
+      background: //linear-gradient(
+              //        @bg-overlay,
+              //        @bg-overlay
+              //),
+              url(@mobile-image-path); //渐变 图片
+      background-color: #CCCCCC;
+      background-attachment: fixed; //背景图片固定不动。
+      background-repeat: no-repeat;
     }
+
   }
   @keyframes bgFadeIn {
     0% {
