@@ -31,7 +31,7 @@ class ImageAndText extends PureComponent {
             category: active_category||'all',
             imageIndex: null,
             fixed: false,
-            showMore:'false'
+            showMore:false
         };
         this.getPost = debounce(this.getPost, 300);
     }
