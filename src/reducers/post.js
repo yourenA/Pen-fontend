@@ -3,6 +3,7 @@
  */
 import {GET_POST_FAIL,GET_POST_SUCCESS,RESET_POST,GET_CATEGORY_SUCCESS,RESET_DETAIL,GET_ONE_POST_SUCCESS,GET_ONE_POST_FAIL
 ,SAVE_SCROLL,ADD_COMMENT_SUCCESS,ADD_COMMENT_FAIL,GET_COMMENTS_SUCCESS,GET_COMMENTS_FAIL} from '../actions/post';
+import List from './../images/list.png'
 const initState = {
     loaded: false,
     data: [],
@@ -42,7 +43,7 @@ export default function photo(state = initState, action) {
                 active_category:action.payload.active_category
             });
         case GET_CATEGORY_SUCCESS:
-            action.payload.rows.unshift({id:'all',name:'全部'})
+            action.payload.rows.unshift({id:'all',name:'全部','imageUrl':List})
             return Object.assign({}, state, {
                 category:action.payload.rows,
 

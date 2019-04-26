@@ -15,26 +15,30 @@ import Header from './../../components/Header/Index'
 import emoji from 'emoji-dictionary'
 import clear from './../../images/clear.png'
 import home from './../../images/home.png'
+import more from './../../images/more.png'
+
+import configJson from 'configJson' ;
+import find from 'lodash/find'
 class ImageAndText extends PureComponent {
     constructor(props) {
         super(props);
         const {post:{ pagination,active_category}}=this.props;
+        this.title='-Daijiaru';
         this.state = {
             imgW: 0,
             page: pagination.current_page||1,
             query: "",
             category: active_category||'all',
             imageIndex: null,
-            fixed: false
+            fixed: false,
+            showMore:'false'
         };
         this.getPost = debounce(this.getPost, 300);
     }
 
     componentDidMount() {
-        console.log(this.props.location.state)
         const that = this;
         const {loaded,scrollTop} = this.props.post;
-        console.log('scrollTop',scrollTop)
         document.documentElement.scrollTop=scrollTop
         if (!loaded || this.props.location.state) {
             that.props.resetPost();
@@ -64,6 +68,9 @@ class ImageAndText extends PureComponent {
 
         window.addEventListener('scroll', that.changeSiderPosition)
     }
+    setTitle=(name)=>{
+        document.title=name+this.title
+    }
     componentWillUnmount() {
         const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         this.props.saveScroll(scrollTop)
@@ -84,7 +91,13 @@ class ImageAndText extends PureComponent {
         }
     }
     getPost = (params)=> {
-        console.log('get post')
+        console.log('get post',params)
+        if(params.category==='more'){
+            this.setState({
+                showMore:!this.state.showMore
+            })
+            return false
+        }
         const that = this;
         this.props.getPost({
             cb: ()=> {
@@ -98,7 +111,11 @@ class ImageAndText extends PureComponent {
                         category: params.category
                     })
                 }
-                const {post:{pagination}}=this.props;
+                const {post:{pagination,category}}=this.props;
+                const nowCategory=find(category,function (o) {
+                    return o.id== params.category
+                })
+                this.setTitle(nowCategory.name)
                 this.props.history.replace(`/post?category=${this.state.category}&page=${pagination.current_page}`)
 
             }, params
@@ -117,65 +134,35 @@ class ImageAndText extends PureComponent {
             })
         })
     }
-    loadAllByPage = (index)=> {
-        return new Promise((resolve, reject) => {
-            this.setState({
-                page: index + 1
-            })
-            this.props.getPost({cb: ()=>resolve(index), params: {page: index + 1}})
-        });
-    }
-    loadMoreData = ()=> {
-        const {photo: {lastPage}} = this.props;
-        const items = document.querySelectorAll('.item')
-        if (items.length > 0 && this.state.page < lastPage) {
-            let fetchFlah = true;
-            const lastItem = items[items.length - 1]
-            // const scrollTop =document.documentElement.scrollTop || document.body.scrollTop;
-            const winHeight = document.documentElement.clientHeight || document.body.clientHeight;
-            const lastItemTop = lastItem.getBoundingClientRect().top
-            // console.log(scrollTop)
-            console.log(winHeight)
-            console.log('lastItemTop', lastItemTop)
-            if (lastItemTop < winHeight && fetchFlah) {
-                fetchFlah = false;
-                this.setState({
-                    page: this.state.page + 1
-                }, function () {
-                    this.props.getPhoto({
-                        cb: ()=> {
-                        }, params: {page: this.state.page}
-                    })
-                    this.props.history.push({pathname: '/post', search: `?page=${this.state.page}`})
-                })
-
-            }
-        } else {
-            return
-        }
-    }
-    loadMore = ()=> {
-        this.setState({
-            page: this.state.page + 1
-        }, function () {
-            console.log(this.state.page)
-            this.props.getPost({
-                cb: ()=> {
-                }, params: {page: this.state.page}
-            })
-            this.props.history.push({pathname: '/photo', search: `?page=${this.state.page}`})
-        })
-    }
-
     render() {
         const {post:{data, category, pagination}}=this.props;
         const renderCategory = category.map((item, index)=> {
             return <div key={index} className={`category-item ${item.id == this.state.category ? 'active' : ''}`}
-                        onClick={()=>this.getPost({
-                            query: this.state.query,
-                            page: 1,
-                            category: item.id
-                        })}>
+                        onClick={()=>{
+                            this.getPost({
+                                query: this.state.query,
+                                page: 1,
+                                category: item.id
+                            })
+
+                        }}>
+                <img src={item.id==='all'?item.imageUrl:`${configJson.prefix}/${item.imageUrl}`} alt=""/>
+                {item.name}
+            </div>
+        })
+        const mobileCategory=[...category]
+        mobileCategory.splice(3,0,{id:'more',name:'更多',imageUrl:more})
+        const renderMobileCategory = mobileCategory.map((item, index)=> {
+            return <div key={index} className={`category-item ${item.id == this.state.category ? 'active' : ''}`}
+                        onClick={()=>{
+                            this.getPost({
+                                query: this.state.query,
+                                page: 1,
+                                category: item.id
+                            })
+
+                        }}>
+                <img src={(item.id==='all'||item.id==='more')?item.imageUrl:`${configJson.prefix}/${item.imageUrl}`} alt=""/>
                 {item.name}
             </div>
         })
@@ -249,7 +236,12 @@ class ImageAndText extends PureComponent {
                         <div className="seat" style={{visibility: this.state.fixed ? 'visible' : 'hidden'}}></div>
                         <div className="category-content"
                              style={{position: this.state.fixed ? 'fixed' : 'relative', top: 0}}>
-                            {renderCategory}
+                            <div className="pc-content">
+                                {renderCategory}
+                            </div>
+                            <div className={`mobile-content ${this.state.showMore&&'showMore'}`}>
+                                {renderMobileCategory}
+                            </div>
                         </div>
                     </div>
                     <div className="post">

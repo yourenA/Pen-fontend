@@ -120,6 +120,7 @@ class Detail extends PureComponent {
     render() {
 
         const {post:{detail, status, msg, comments}}=this.props;
+        document.title=detail.title?detail.title:' '
         // const emojiSupport = text =>{
         //     console.log(detail.markdown.replace(/:\w+:/gi, name => emoji.getUnicode(name)))
         //     return detail.markdown.replace(/:\w+:/gi, name => emoji.getUnicode(name))
@@ -174,6 +175,7 @@ class Detail extends PureComponent {
                                 source={emojiSupport || ''}
                                 skipHtml={this.state.htmlMode === 'skip'}
                                 escapeHtml={this.state.htmlMode === 'escape'}
+                                linkTarget={'_blank'}
                                 renderers={assign({}, Markdown.renderers, {
                                     code: CodeBlock,
                                 })}

@@ -60,18 +60,39 @@ cover: 中文释义“覆盖”。保持原有尺寸比例。保证替换内容�
       width: 100%;
     }
     .category-content{
-      //width: 100%;
-      background: #ffffff;
-
       @media (max-width: @small-media){
         width: 100%;
-        padding:0 15px 15px 15px;
-        display: flex;
-        z-index: 999;
-        text-align: center;
+        z-index: 9999;
+      }
+      background: #ffffff;
+
+    }
+    .pc-content{
+      display: block;
+      @media (max-width: @small-media){
+        display: none;
       }
     }
-
+    .mobile-content{
+      display: none;
+      @media (max-width: @small-media){
+        box-sizing: border-box;
+        width: 100%;
+        padding:0 15px 0 15px;
+        display: flex;
+        flex-wrap: wrap;
+        overflow: hidden;
+        text-align: center;
+        background: #ffffff;
+        height: 32px;
+        margin-bottom: 10px;
+      }
+    }
+    .mobile-content.showMore{
+      @media (max-width: @small-media){
+        height: auto;
+      }
+    }
     .category-item{
       width: 150px;
       text-overflow: ellipsis;
@@ -79,13 +100,21 @@ cover: 中文释义“覆盖”。保持原有尺寸比例。保证替换内容�
       white-space:nowrap;
       box-sizing: border-box;
       padding: 8px;
-      font-size: 16px;
+      font-size: 15px;
       color: #5d5d5d;
       border-radius:3px ;
       cursor: pointer;
-      transition: all 0.3s;
+      transition: all 0.1s;
+      display: flex;
+      align-items: center;
+      img{
+        width: 14px;
+        height: 14px;
+        margin-right: 5px;
+      }
       @media (max-width: @small-media){
-        flex: 1;
+        flex: 0 0 25%;
+        background: #ffffff;
         font-size: 14px;
       }
       &:hover:not(.active){
@@ -125,7 +154,7 @@ cover: 中文释义“覆盖”。保持原有尺寸比例。保证替换内容�
           font-family: Arial, Verdana, sans-serif;
           margin-bottom:8px;
           line-height: 1.8;
-          color: #353535;
+          color: #777;
           font-size: 15px;
           flex: 1;
           .code-desc-content{

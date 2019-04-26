@@ -18,6 +18,7 @@ class Home extends PureComponent {
 
     }
     componentDidMount() {
+        document.title='Notes-Daijiaru';
         const that = this
         window.addEventListener('DOMMouseScroll', that.wheelscroll)//Firefox
         window.addEventListener('mousewheel', that.wheelscroll)//Firefox
@@ -100,7 +101,7 @@ class Home extends PureComponent {
                             <div
                                 className={`main-item  animated  ${this.state.item1Loaded ? 'bounceInDown show' : ''}`}>
                                 <div className="main-item-inner " onClick={()=> {
-                                    this.props.history.push({ pathname: "/post",search:'?category=1&page=1', state: {reload:true} })
+                                    this.props.history.push({ pathname: "/post",search:'?category=all&page=1', state: {reload:true} })
 
                                 }}>
                                     <div className="item-bg">
@@ -113,15 +114,15 @@ class Home extends PureComponent {
                                         <img src={icon2} alt=""/>
                                     </div>
                                     <div className="item-desc">
-                                        <h3>前端</h3>
-                                        <p>Record</p>
+                                        <h3>全部</h3>
+                                        <p>ALL</p>
                                     </div>
                                 </div>
                             </div>
                             <div
                                 className={`main-item  animated  ${this.state.item2Loaded ? 'bounceInDown  show' : ''}`}>
                                 <div className="main-item-inner" onClick={()=> {
-                                    this.props.history.push({ pathname: "/post",search:'?category=2&page=1', state: {reload:true} })
+                                    this.props.history.push({ pathname: "/post",search:'?category=1&page=1', state: {reload:true} })
 
                                 }}>
                                     <div className="item-bg">
@@ -134,34 +135,13 @@ class Home extends PureComponent {
                                         <img src={icon3} alt=""/>
                                     </div>
                                     <div className="item-desc">
-                                        <h3>NodeJS</h3>
-                                        <p>Photo</p>
+                                        <h3>前端</h3>
+                                        <p>Fontend</p>
                                     </div>
                                 </div>
                             </div>
                             <div
                                 className={`main-item  animated  ${this.state.item3Loaded ? 'bounceInDown  show' : ''}`}>
-                                <div className="main-item-inner" onClick={()=> {
-                                    this.props.history.push({ pathname: "/post",search:'?category=3&page=1', state: {reload:true} })
-
-                                }}>
-                                    <div className="item-bg">
-                                        <div className="line line1"></div>
-                                        <div className="line line2"></div>
-                                        <div className="line line3"></div>
-                                        <div className="line line4"></div>
-                                    </div>
-                                    <div className="item-image">
-                                        <img src={icon4} alt=""/>
-                                    </div>
-                                    <div className="item-desc">
-                                        <h3>数据库</h3>
-                                        <p>design values</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div
-                                className={`main-item  animated  ${this.state.item4Loaded ? 'bounceInDown show' : ''}`}>
                                 <div className="main-item-inner" onClick={()=> {
                                     this.props.history.push({ pathname: "/post",search:'?category=4&page=1', state: {reload:true} })
 
@@ -177,7 +157,28 @@ class Home extends PureComponent {
                                     </div>
                                     <div className="item-desc">
                                         <h3>摄影</h3>
-                                        <p>design values</p>
+                                        <p>Photography</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                className={`main-item  animated  ${this.state.item4Loaded ? 'bounceInDown show' : ''}`}>
+                                <div className="main-item-inner" onClick={()=> {
+                                    this.props.history.push({ pathname: "/post",search:'?category=5&page=1', state: {reload:true} })
+
+                                }}>
+                                    <div className="item-bg">
+                                        <div className="line line1"></div>
+                                        <div className="line line2"></div>
+                                        <div className="line line3"></div>
+                                        <div className="line line4"></div>
+                                    </div>
+                                    <div className="item-image">
+                                        <img src={icon4} alt=""/>
+                                    </div>
+                                    <div className="item-desc">
+                                        <h3>其它</h3>
+                                        <p>Others</p>
                                     </div>
                                 </div>
 
