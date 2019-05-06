@@ -3,5 +3,5 @@
  */
 
 export default  {
-    prefix: 'http://localhost:3000',
+    prefix: 'http://106.13.7.195:3000',
 }

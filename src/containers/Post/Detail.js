@@ -94,6 +94,7 @@ class Detail extends PureComponent {
             captcha: this.state.code,
             post_id: id
         }, function () {
+            that.getCaptcha()
             that.props.getComents(id)
         })
     }
