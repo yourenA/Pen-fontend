@@ -16,6 +16,7 @@ import huifu from '../../images/huifu.png'
 import clear from '../../images/clear.png'
 import empty from '../../images/empty.png'
 import axios from 'axios';
+import NProgress from 'nprogress'
 import CodeBlock from './Markdown/code-block'
 var Markdown = require('react-markdown');
 class Detail extends PureComponent {
@@ -37,7 +38,10 @@ class Detail extends PureComponent {
         document.documentElement.scrollTop = 0
         const pathname = this.props.history.location.pathname.split('/')
         const id = pathname[pathname.length - 1]
-        this.props.getOnePost(id)
+        NProgress.start()
+        this.props.getOnePost(id,function () {
+            NProgress.done()
+        })
         this.props.getComents(id)
     }
 

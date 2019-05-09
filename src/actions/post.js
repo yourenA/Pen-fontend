@@ -160,7 +160,7 @@ export function getComents(id) {
     }
 }
 
-export function getOnePost(id) {
+export function getOnePost(id,cb) {
     return dispatch => {
         axios({
             url: `${configJson.prefix}/api/code/${id}`,
@@ -173,6 +173,9 @@ export function getOnePost(id) {
                         type: GET_ONE_POST_SUCCESS,
                         payload: response.data,
                     });
+                    if(cb){
+                        cb()
+                    }
                 } else {
                     dispatch({
                         type: GET_ONE_POST_FAIL,

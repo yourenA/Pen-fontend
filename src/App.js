@@ -18,6 +18,7 @@ import homeContainer from './containers/Home/Index'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as getBaseInfo from './actions/record';
+import './nprogress.less'
 require('es6-promise').polyfill();
 const history = createHistory()
 // var parser = require('ua-parser-js');

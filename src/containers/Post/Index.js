@@ -16,9 +16,10 @@ import emoji from 'emoji-dictionary'
 import clear from './../../images/clear.png'
 import home from './../../images/home.png'
 import more from './../../images/more.png'
-
+import NProgress from 'nprogress'
 import configJson from 'configJson' ;
 import find from 'lodash/find'
+
 class ImageAndText extends PureComponent {
     constructor(props) {
         super(props);
@@ -91,6 +92,7 @@ class ImageAndText extends PureComponent {
         }
     }
     getPost = (params)=> {
+        NProgress.start()
         console.log('get post',params)
         if(params.category==='more'){
             this.setState({
@@ -101,6 +103,7 @@ class ImageAndText extends PureComponent {
         const that = this;
         this.props.getPost({
             cb: ()=> {
+                NProgress.done();
                 if (params.page) {
                     that.setState({
                         page: params.page,
