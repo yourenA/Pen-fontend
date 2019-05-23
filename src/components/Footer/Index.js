@@ -6,7 +6,7 @@ const Footer = ({maxWidth }) => {
             <div className="footer" >
                 <div className="footer-content" style={{maxWidth:maxWidth?maxWidth+'px':'1100px'}}>
                     <p>Project build with React & NodeJS</p>
-                    <p>@2019 ♥ Daijiaru</p>
+                    <p>@2019 Daijiaru<span className="heart">♥</span> </p>
                 </div>
 
             </div>
