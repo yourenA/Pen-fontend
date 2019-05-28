@@ -108,8 +108,8 @@ cover: 中文释义“覆盖”。保持原有尺寸比例。保证替换内容�
       display: flex;
       align-items: center;
       img{
-        width: 14px;
-        height: 14px;
+        width: 16px;
+        height: 16px;
         margin-right: 5px;
       }
       @media (max-width: @small-media){
@@ -131,8 +131,11 @@ cover: 中文释义“覆盖”。保持原有尺寸比例。保证替换内容�
     flex: 1;
     padding: 0 15px;
     .post-item{
-      padding: 25px 5px;
+      padding: 20px 5px;
       background: url(../../images/line.png) center bottom repeat-x;
+      @media (max-width: @small-media){
+        padding: 15px 5px;
+      }
       .post-title{
         cursor: pointer;
         font-size: 18px;
@@ -152,7 +155,7 @@ cover: 中文释义“覆盖”。保持原有尺寸比例。保证替换内容�
         display: flex;
         .post-desc{
           font-family: Arial, Verdana, sans-serif;
-          margin-bottom:8px;
+          margin-bottom:12px;
           line-height: 1.6;
           color: #777;
           font-size: 15px;
@@ -165,7 +168,7 @@ cover: 中文释义“覆盖”。保持原有尺寸比例。保证替换内容�
         .post-img{
           width: 100px;
           height: auto;
-          max-height: 68px;
+          max-height: 60px;
           overflow: hidden;
           margin:0 0 0 15px;
           border-radius: 2px;
@@ -183,7 +186,7 @@ cover: 中文释义“覆盖”。保持原有尺寸比例。保证替换内容�
 
 
       .post-time{
-        color: #757575;
+        color: #999;
         font-size: 14px;
       }
       &:not(:last-child){

@@ -10,7 +10,7 @@
 
 .detail-content {
   flex: 1;
-  max-width: 780px;
+  max-width: 880px;
   width: 100%;
   margin: 0 auto;
   background: #ffffff;
@@ -76,13 +76,14 @@
     }
   }
   .hljs {
-    line-height: 1.5;
+    line-height: 1.2;
     border-radius: 3px ;
     padding: 1em;
+    max-height: 500px;
   }
   .markdown-modal {
-    color:#716b6b;
-
+    color:#515151;
+    letter-spacing: 0.5px;
     font-family: Helvetica, Arial, sans-serif;
     font-size: 16px;
     h1 {
@@ -114,7 +115,10 @@
       margin-top: .35em;
     }
     ul, ol {
-      padding-left: 2em;
+      padding-left: 1.5em;
+      ul,ol{
+        padding-left: 0.5em;
+      }
     }
     dl, ol, ul {
       margin-top: 0;

@@ -210,7 +210,7 @@ class ImageAndText extends PureComponent {
                     <div className="post-tags">{renderTags(item.tags)}</div>
                     <div className="post-content">
                         <div className="post-desc">
-                            <Ellipsis className="code-desc-content" lines={3}>
+                            <Ellipsis className="code-desc-content" lines={2}>
                                 <p
                                     dangerouslySetInnerHTML={{
                                         __html: md
