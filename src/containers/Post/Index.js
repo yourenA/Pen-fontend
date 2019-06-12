@@ -38,6 +38,7 @@ class ImageAndText extends PureComponent {
     }
 
     componentDidMount() {
+        console.log('this.props.history',this.props.history)
         const that = this;
         const {loaded,scrollTop} = this.props.post;
         document.documentElement.scrollTop=scrollTop
@@ -92,7 +93,6 @@ class ImageAndText extends PureComponent {
         }
     }
     getPost = (params)=> {
-        NProgress.start()
         console.log('get post',params)
         if(params.category==='more'){
             this.setState({
@@ -100,6 +100,7 @@ class ImageAndText extends PureComponent {
             })
             return false
         }
+        NProgress.start()
         const that = this;
         this.props.getPost({
             cb: ()=> {

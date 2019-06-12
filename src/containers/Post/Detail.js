@@ -17,6 +17,7 @@ import clear from '../../images/clear.png'
 import empty from '../../images/empty.png'
 import axios from 'axios';
 import NProgress from 'nprogress'
+import debounce from 'lodash/debounce'
 import CodeBlock from './Markdown/code-block'
 var Markdown = require('react-markdown');
 class Detail extends PureComponent {
@@ -35,18 +36,64 @@ class Detail extends PureComponent {
     }
 
     componentDidMount() {
-        document.documentElement.scrollTop = 0
+
+        const that=this
         const pathname = this.props.history.location.pathname.split('/')
         const id = pathname[pathname.length - 1]
         NProgress.start()
+        this.props.getComents(id)
         this.props.getOnePost(id,function () {
             NProgress.done()
+            if (that.props.history.action === 'PUSH') {
+            } else {
+                if(sessionStorage.getItem('DETAIL_SCROLL')){
+                    that.scrollToPre()
+                }
+            }
+            window.addEventListener('scroll', debounce(that.getScroll,100))
         })
-        this.props.getComents(id)
     }
+    getScroll=()=>{
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        sessionStorage.setItem('DETAIL_SCROLL',scrollTop)
+    }
+    scrollToPre=()=>{
+        const that=this;
+        const imgs=document.querySelectorAll('.markdown-modal img')
+        console.log('imgs',imgs)
+        if(imgs.length>0){
+            const promises = [...imgs].map(function (item) {
+                return that.loadImageAsync(item.src);
+            });
+            Promise.all(promises).then(function (posts) {
+                console.log('全部加载完毕')
+                document.documentElement.scrollTop=Number(sessionStorage.getItem('DETAIL_SCROLL'))
+            }).catch(function(reason){
+                // ...
+            });
 
+        }else{
+            document.documentElement.scrollTop=Number(sessionStorage.getItem('DETAIL_SCROLL'))
+        }
+
+    }
+    loadImageAsync=(url)=> {
+        return new Promise(function(resolve, reject) {
+            const image = new Image();
+
+            image.onload = function() {
+                resolve(image);
+            };
+
+            image.onerror = function() {
+                reject(new Error('Could not load image at ' + url));
+            };
+            image.src = url;
+        });
+    }
     componentWillUnmount() {
         this.props.resetDetail()
+        window.removeEventListener('scroll', this.getScroll)
     }
 
     goHome = ()=> {
