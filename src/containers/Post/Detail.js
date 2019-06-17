@@ -295,7 +295,7 @@ class Detail extends PureComponent {
 
                     }
                 </div>
-                <Footer maxWidth={780}/>
+                <Footer maxWidth={880}/>
                 <TurnTop goHome={this.goHome}/>
             </div>
         );
