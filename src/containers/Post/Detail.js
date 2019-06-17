@@ -183,7 +183,7 @@ class Detail extends PureComponent {
             return items.map((item, index)=> {
                 return (
                     <Tag
-                        key={item.id} color={`rgba(${item.r},${item.g},${item.b},${item.a})`} title={item.name}>
+                        key={item.id}  r={item.r} g={item.g} b={item.b}  color={`rgba(${item.r},${item.g},${item.b},${item.a})`} title={item.name}>
                     </Tag>
                 )
             })

@@ -174,7 +174,7 @@ class ImageAndText extends PureComponent {
             return items.map((item, index)=> {
                 return (
                     <Tag
-                        key={item.id} color={`rgba(${item.r},${item.g},${item.b},${item.a})`} title={item.name}>
+                        key={item.id} r={item.r} g={item.g} b={item.b} color={`rgba(${item.r},${item.g},${item.b},${item.a})`} title={item.name}>
                     </Tag>
                 )
             })
@@ -219,8 +219,7 @@ class ImageAndText extends PureComponent {
                             </Ellipsis>
                         </div>
                         {
-                            img && <div className="post-img">
-                                <img src={img[1]} alt=""/>
+                            img && <div className="post-img" style={{backgroundImage:`url(${img[1]})`}}>
                             </div>
                         }
 

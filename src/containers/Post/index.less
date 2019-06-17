@@ -78,7 +78,7 @@ cover: 中文释义“覆盖”。保持原有尺寸比例。保证替换内容�
       @media (max-width: @small-media){
         box-sizing: border-box;
         width: 100%;
-        padding:0 15px 0 15px;
+        padding:0 10px;
         display: flex;
         flex-wrap: wrap;
         overflow: hidden;
@@ -130,11 +130,20 @@ cover: 中文释义“覆盖”。保持原有尺寸比例。保证替换内容�
   .post{
     flex: 1;
     padding: 0 15px;
+    @media (max-width: @small-media){
+      padding: 0 10px;
+    }
     .post-item{
-      padding: 20px 5px;
-      background: url(../../images/line.png) center bottom repeat-x;
+      position: relative;
+      transition: all .2s linear;
+      border: 1px solid #ebedf0;
+      padding: 16px 20px;
+      margin-bottom: 10px;
+      &:hover{
+        box-shadow: 0 15px 30px 0 rgba(0,0,0,.1);
+      }
       @media (max-width: @small-media){
-        padding: 15px 5px;
+        padding: 12px;
       }
       .post-title{
         cursor: pointer;
@@ -146,7 +155,7 @@ cover: 中文释义“覆盖”。保持原有尺寸比例。保证替换内容�
         display: inline-block;
         color: @footer-color;
         &:hover{
-          color:lighten(@footer-color,10%);
+          //color:lighten(@footer-color,10%);
         }
       }
       .post-tags{
@@ -167,11 +176,12 @@ cover: 中文释义“覆盖”。保持原有尺寸比例。保证替换内容�
         }
         .post-img{
           width: 100px;
-          height: auto;
-          max-height: 60px;
+          height: 48px;
           overflow: hidden;
           margin:0 0 0 15px;
           border-radius: 2px;
+          background-size: cover;
+          background-position: center;
           @media (max-width: @small-media){
             width: 80px;
             margin:0 0 0 10px;
@@ -240,6 +250,7 @@ cover: 中文释义“覆盖”。保持原有尺寸比例。保证替换内容�
 
   .search-box{
     position: relative;
+    margin-bottom: 16px;
     .search-input{
       box-sizing: border-box;
       margin: 0;
