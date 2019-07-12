@@ -2,7 +2,7 @@
  * Created by Administrator on 2017/3/8.
  */
 import {GET_POST_FAIL,GET_POST_SUCCESS,RESET_POST,GET_CATEGORY_SUCCESS,RESET_DETAIL,GET_ONE_POST_SUCCESS,GET_ONE_POST_FAIL
-,SAVE_SCROLL,ADD_COMMENT_SUCCESS,ADD_COMMENT_FAIL,GET_COMMENTS_SUCCESS,GET_COMMENTS_FAIL} from '../actions/post';
+,SAVE_SCROLL,ADD_COMMENT_SUCCESS,ADD_COMMENT_FAIL,GET_COMMENTS_SUCCESS,GET_COMMENTS_FAIL,CHANGE_SHOW_MORE} from '../actions/post';
 import List from './../images/list.png'
 const initState = {
     loaded: false,
@@ -16,10 +16,15 @@ const initState = {
     status:0,
     msg:'',
     comments:[],
+    showMore:false
 
 };
 export default function photo(state = initState, action) {
     switch (action.type) {
+        case CHANGE_SHOW_MORE:
+            return Object.assign({}, state, {
+                showMore:!state.showMore
+            });
         case SAVE_SCROLL:
             return Object.assign({}, state, {
                 scrollTop:action.payload

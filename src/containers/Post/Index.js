@@ -95,9 +95,7 @@ class ImageAndText extends PureComponent {
     getPost = (params)=> {
         console.log('get post',params)
         if(params.category==='more'){
-            this.setState({
-                showMore:!this.state.showMore
-            })
+            this.props.changeShowMore()
             return false
         }
         NProgress.start()
@@ -139,7 +137,7 @@ class ImageAndText extends PureComponent {
         })
     }
     render() {
-        const {post:{data, category, pagination}}=this.props;
+        const {post:{data, category, pagination,showMore}}=this.props;
         const renderCategory = category.map((item, index)=> {
             return <div key={index} className={`category-item ${item.id == this.state.category ? 'active' : ''}`}
                         onClick={()=>{
@@ -155,7 +153,7 @@ class ImageAndText extends PureComponent {
             </div>
         })
         const mobileCategory=[...category]
-        mobileCategory.splice(3,0,{id:'more',name:'更多',imageUrl:more})
+        mobileCategory.splice(3,0,{id:'more',name:showMore?'折叠':'更多',imageUrl:more})
         const renderMobileCategory = mobileCategory.map((item, index)=> {
             return <div key={index} className={`category-item ${item.id == this.state.category ? 'active' : ''}`}
                         onClick={()=>{
@@ -219,8 +217,7 @@ class ImageAndText extends PureComponent {
                             </Ellipsis>
                         </div>
                         {
-                            img && <div className="post-img" style={{backgroundImage:`url(${img[1]})`}}>
-                            </div>
+                            img && <div className="post-img" style={{backgroundImage:`url(${img[1]})`}}></div>
                         }
 
                     </div>
@@ -236,13 +233,13 @@ class ImageAndText extends PureComponent {
                 <Header title="" desc="" background={background}/>
                 <div className="content-box">
                     <div className="category">
-                        <div className="seat" style={{visibility: this.state.fixed ? 'visible' : 'hidden'}}></div>
+                        <div className="seat" style={{display: this.state.fixed ? 'block' : 'none',height:document.querySelector('.category-content')?document.querySelector('.category-content').offsetHeight+'px':0}}></div>
                         <div className="category-content"
                              style={{position: this.state.fixed ? 'fixed' : 'relative', top: 0}}>
                             <div className="pc-content">
                                 {renderCategory}
                             </div>
-                            <div className={`mobile-content ${this.state.showMore&&'showMore'}`}>
+                            <div className={`mobile-content ${showMore&&'showMore'}`}>
                                 {renderMobileCategory}
                             </div>
                         </div>

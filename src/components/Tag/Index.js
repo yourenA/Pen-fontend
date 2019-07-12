@@ -1,7 +1,6 @@
 import React from 'react';
 import './index.less';
 const Tag = ({title,color,...restProps }) => {
-    console.log(restProps)
     return (
 
             <div className="tag" style={{
